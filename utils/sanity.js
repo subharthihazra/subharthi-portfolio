@@ -3,7 +3,7 @@ const { createClient } = require("@sanity/client");
 const { imageUrlBuilder } = require("@sanity/image-url");
 
 const client = createClient({
-  projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
+  projectId: process.env.SANITY_PROJECT_ID,
   dataset: "production",
   useCdn: true, // set to `false` to bypass the edge cache
   apiVersion: "2023-05-03", // use current date (YYYY-MM-DD) to target the latest API version
