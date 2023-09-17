@@ -8,9 +8,23 @@
   </head>
   <body>
     <div id="container">
-      <div id="header">Hi</div>
+      <div id="header"><div id="text">sh</div></div>
       <div id="main">
-        <div id="first_banner" class="section"></div>
+        <div id="first_banner" class="section">
+          <div id="text_layer" class="layer">
+            <div id="text">
+              I'm <span id="name">Subharthi Hazra</span>, a
+              <span id="prof">Software Developer</span>
+              from Kolkata, India !
+            </div>
+          </div>
+
+          <div id="pic_layer" class="layer"></div>
+
+          <div id="pointer_circle">
+            <div id="actual_circle"></div>
+          </div>
+        </div>
         <div id="skills" class="section">
           <% for (skill of portfolioData.skills) { %>
           <div
@@ -35,6 +49,9 @@
       <div id="footer">ddd</div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+    <script src="https://unpkg.com/kinet@2.2.1/dist/kinet.min.js"></script>
     <script type="text/javascript" src="./index.js"></script>
   </body>
 </html>

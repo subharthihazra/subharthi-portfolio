@@ -15,14 +15,19 @@ const urlFor = (source) => builder.image(source);
 
 async function getPosts() {
   const data = await client.fetch('*[_type == "skills"]');
-  return data.map((item) =>
-    (({ name, level, color, imgUrl }) => ({
-      name,
-      level,
-      color,
-      imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
-    }))(item)
-  );
+  return data
+    .map((item) =>
+      (({ name, level, color, imgUrl, priority }) => ({
+        name,
+        level,
+        color,
+        priority,
+        imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
+      }))(item)
+    )
+    .sort((a, b) => {
+      return (b.priority ? b.priority : 0) - (a.priority ? a.priority : 0); // sorting priority wise
+    });
   //   return data.map((item) => ({ name: item.name, level: item.level }));
 }
 
