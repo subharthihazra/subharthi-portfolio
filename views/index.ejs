@@ -10,6 +10,7 @@
     <div id="container">
       <div id="header">Hi</div>
       <div id="main">
+        <div id="first_banner" class="section"></div>
         <div id="skills" class="section">
           <% for (skill of portfolioData.skills) { %>
           <div
@@ -19,7 +20,10 @@
               --skill-color: <%= skill.color %>;
             "
           >
-            <img src="<%= skill.imgUrl %>" />
+            <div
+              class="image"
+              style="background-image: url('<%= skill.imgUrl %>')"
+            ></div>
             <div class="name"><%= skill.name %></div>
             <div class="level">
               <div class="bar"></div>

@@ -1,4 +1,50 @@
+:root {
+  --header-height: 60px;
+}
+
+* {
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+#header.float {
+  background-color: white;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+#main {
+}
+
 #main .section {
+}
+
+#main .section#first_banner {
+  height: 100vh;
+}
+
+#main .section#skills {
   display: grid;
   grid-auto-columns: 150px;
   grid-template-columns: repeat(auto-fit, 300px);
@@ -6,18 +52,27 @@
   justify-content: center;
   grid-gap: 30px;
 }
-#main .section .item {
+#main .section#skills .item {
   background-color: var(--skill-color);
   height: 300px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
 }
 
-#main .section .item .level {
+#main .section#skills .item .image {
+  height: 150px;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+}
+
+#main .section#skills .item .level {
   width: 80%;
   height: 5px;
   background-color: aliceblue;
 }
 
-#main .section .item .level .bar {
+#main .section#skills .item .level .bar {
   background-color: red;
   height: 5px;
   width: var(--skill-level-bar-width);
