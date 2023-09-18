@@ -2,6 +2,9 @@ const header = document.querySelector("#header");
 const pointer_circle = document.querySelector("#pointer_circle");
 const pic_layer = document.querySelector("#first_banner #pic_layer");
 const sectionElms = document.querySelectorAll("#main .section");
+const sectionElmsHid = document.querySelectorAll("#main .section.hidden");
+const skillsSection = document.querySelector("#main .section#skills");
+const itemsOfSkills = document.querySelectorAll("#main .section#skills .item");
 
 ////////////////////////////////////////////////////////////////////////
 window.onscroll = function (e) {
@@ -12,16 +15,18 @@ document.onload = handleHeader;
 document.addEventListener("mousemove", function (e) {
   handleKinet(e);
   handlePicColorChange(detectMouseSpeed(e));
+  handleCardGradAnim(e);
 });
 document.addEventListener("mousedown", () => {
   pointer_circle.classList.add("clicked");
-  pic_layer.querySelector("canvas").style.backgroundColor = "#000b65";
+  pic_layer.querySelector("canvas").style.backgroundColor = "#000000";
 });
 
 document.addEventListener("mouseup", () => {
   pointer_circle.classList.remove("clicked");
-  pic_layer.querySelector("canvas").style.backgroundColor = "black";
+  pic_layer.querySelector("canvas").style.backgroundColor = "transparent";
 });
+
 //////////////////////////////////////////////////
 
 function handleHeader() {
@@ -79,7 +84,7 @@ VANTA.TOPOLOGY({
   scale: 1.0,
   scaleMobile: 1.0,
   color: 0xed0087,
-  backgroundColor: 0x000b65,
+  backgroundColor: 0x000848,
 });
 
 ////////////////////////////////////////////////////////////////////////
@@ -117,7 +122,7 @@ function handlePicColorChange(
   let num = speed <= 99 ? speed : 99;
   let col = parseInt((num / 99) * 255).toString(16);
   // console.log(num, col);
-  pic_layer.querySelector("canvas").style.backgroundColor = "#000b65" + col;
+  pic_layer.querySelector("canvas").style.backgroundColor = "#000000" + col;
 }
 ///////////////////////////////////////////////////////////////////////
 const sectionElmObserver = new IntersectionObserver((elms) => {
@@ -130,6 +135,17 @@ const sectionElmObserver = new IntersectionObserver((elms) => {
     }
   }
 });
-sectionElms.forEach((elm) => {
+sectionElmsHid.forEach((elm) => {
   sectionElmObserver.observe(elm);
 });
+///////////////////////////////////////////////////////////////////
+function handleCardGradAnim(e) {
+  for (const card of itemsOfSkills) {
+    const rect = card.getBoundingClientRect(),
+      x = e.clientX - rect.left,
+      y = e.clientY - rect.top;
+
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
+  }
+}

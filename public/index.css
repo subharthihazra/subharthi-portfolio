@@ -29,6 +29,8 @@
 
 :root {
   --header-height: 50px;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
 }
 
 * {
@@ -39,7 +41,9 @@ body {
   margin: 0;
   padding: 0;
   /* background-color: black; */
-  background-color: #000912;
+  /* background-color: #000912; */
+
+  background-color: #15202b;
   /* background-image: linear-gradient(105deg, rgb(0 35 35), rgb(0 3 23)); */
   background-image: radial-gradient(
     ellipse 80% 50% at 50% -20%,
@@ -137,6 +141,7 @@ body {
   align-items: center;
   padding: 0 15px 0 15px;
   font-size: 20px;
+  line-height: 1em;
   font-family: "Mooli";
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   transition: all 0.3s;
@@ -209,10 +214,6 @@ body {
 #main .section.hidden {
   opacity: 0;
   transform: translateX(-100%);
-
-  filter: blur(25px);
-  --webkit-filter: blur(25px);
-  --moz-filter: blur(25px);
 }
 /*-------------------------------------*/
 /*----First cover when opened ---*/
@@ -290,6 +291,7 @@ body {
 #main .section#first_banner .layer#pic_layer {
   position: absolute;
   z-index: 1;
+  background-color: #000848;
 }
 
 /*-------------------------------------*/
@@ -328,16 +330,20 @@ body {
   grid-template-columns: repeat(auto-fit, 150px);
   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
   justify-content: center;
-  grid-gap: 30px;
+  /* grid-gap: 25px; */
 }
 #main .section#skills .item {
   /* background-image: var(--skill-color); */
   background-color: rgb(0, 24, 35);
   background-image: radial-gradient(
-    circle at center,
+    circle at var(--mouse-x) var(--mouse-y),
     var(--skill-color) 0%,
     transparent
   );
+  background-clip: border-box;
+  background-repeat: no-repeat;
+  background-size: calc(100% + 4px) calc(100% + 4px);
+  background-position: center center;
   /* height: 300px; */
   /* box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px; */
 
@@ -355,9 +361,9 @@ body {
   opacity: 0;
   transform: translateX(-10%);
 
-  filter: blur(15px);
-  --webkit-filter: blur(15px);
-  --moz-filter: blur(15px);
+  filter: blur(4px);
+  --webkit-filter: blur(4px);
+  --moz-filter: blur(4px);
 
   transition: none;
 }
@@ -394,19 +400,35 @@ body {
   margin: 0 10px;
 }
 #main .section#skills .item .level {
+  position: relative;
   width: 80%;
   margin: 10px auto 10px auto;
-  height: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  height: 7px;
   border-radius: 10px;
+}
+
+#main .section#skills .item .level::after {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.11);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  border-radius: 10px;
+  z-index: -1;
 }
 
 #main .section#skills .item .level .bar {
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  height: 5px;
+  height: inherit;
   width: var(--skill-level-bar-width);
 }
+
 /*-------------------------------------*/
 /*----cursor following circle ---*/
 
@@ -476,6 +498,15 @@ body {
   #main .section#first_banner .layer#text_layer #mypic {
     top: 150px;
   }
+
+  #main .section.hidden {
+    filter: blur(25px);
+    --webkit-filter: blur(25px);
+    --moz-filter: blur(25px);
+  }
+  #main .section#skills #skills_shelf {
+    grid-gap: 25px;
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -504,6 +535,13 @@ body {
     left: 10px;
     width: calc(100% - 10px * 2);
   }
+  #main .section#skills {
+    padding: 0 10px;
+  }
+
+  #main .section#skills #skills_shelf {
+    grid-gap: 15px;
+  }
 }
 /*---------------------------------------------------*/
 /*----touch or pointer device ---*/
@@ -515,6 +553,13 @@ body {
   #pointer_circle {
     display: none;
   }
+  #main .section#skills .item {
+    background-image: radial-gradient(
+      circle at 50% 50%,
+      var(--skill-color) 0%,
+      transparent
+    );
+  }
 }
 
 /*---------------------------------------------------*/
@@ -525,6 +570,10 @@ body {
     height: 100vh;
     width: 50%;
     left: 0%;
+  }
+
+  #main .section#skills {
+    padding: 0 15%;
   }
 }
 
@@ -538,6 +587,10 @@ body {
   #header.float {
     left: 10px;
     width: calc(100% - 10px * 2);
+  }
+
+  #main .section#skills {
+    padding: 0 max(5%, 10px);
   }
 }
 /*---------------------------------------------------*/
@@ -572,6 +625,9 @@ body {
 /* -----------------------------------------------*/
 @media (prefers-reduced-motion) {
   #main .section {
+    transition: none;
+  }
+  #main .section#skills .item {
     transition: none;
   }
 }
