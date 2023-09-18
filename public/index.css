@@ -24,9 +24,6 @@
   src: url("./fonts/Khayla\ Almira\ 400.otf");
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap");
-
 :root {
   --header-height: 50px;
 }
@@ -54,6 +51,7 @@ body {
   top: 0px;
   left: 0px;
   right: 0px;
+  width: 100%;
   height: var(--header-height);
   z-index: 100;
   border-radius: 15px;
@@ -69,20 +67,19 @@ body {
 
 #header.float {
   top: 10px;
-  left: 10px;
-  right: 10px;
-
-  background-color: #ffffff33;
+  background-color: #626262a3;
   backdrop-filter: blur(30px) saturate(120%);
   border: 1px solid #ffffff4d;
   /* border: 1px solid #ffffff14; */
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  padding: 0px 5px 0 15px;
 }
 #header #text {
   font-family: yyy;
   letter-spacing: 1px;
   font-size: 25px;
   position: relative;
+  /* margin: 0 0 0 10px; */
 }
 
 #header #text::after {
@@ -94,9 +91,82 @@ body {
   width: 100%;
   background-color: #ff7b4f;
 }
+
+/*------------------------------*/
+
+#header #navbar {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+#header #navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+#header #navbar .navbar_link {
+  /* background-color: red; */
+  height: calc(100% - 5px * 2);
+  /* border: 1px solid transparent; */
+  margin: 5px 0 5px 0;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  /* border-radius: 11px; */
+  align-items: center;
+  padding: 0 15px 0 15px;
+  font-size: 20px;
+  font-family: "Mooli";
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s;
+}
+
+#header #navbar .navbar_link::after {
+  content: "";
+  position: absolute;
+  /* width: 0%;
+  height: 100%;
+  left: 50%;
+
+  bottom: 0;
+  height: 3px;
+  background-color: #ff7b4f; */
+  z-index: -1;
+  transition: all 0.2s;
+
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  border-radius: 11px;
+  border: 1px solid #ffffff4d;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+  background-color: #b7b7b753;
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+#header #navbar a:hover .navbar_link {
+  /* border-color: #ffffff4d;
+  background-color: #40404033; */
+  /* color: black; */
+}
+
+#header #navbar a:hover .navbar_link::after {
+  /* left: 0%;
+  width: 100%; */
+  transform: scale(1);
+  opacity: 1;
+}
+
 /*-------------------------------------*/
 
 #main {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
 }
 /*-------------------------------------*/
 
@@ -115,19 +185,20 @@ body {
 }
 
 #main .section#first_banner .layer#text_layer {
+  position: absolute;
   display: flex;
   align-items: center;
+  z-index: 2;
 }
 
 #main .section#first_banner .layer#text_layer #text {
   width: 100%;
   padding: 0 5% 0 5%;
   box-sizing: border-box;
-  font-size: 45px;
   font-weight: 300;
   font-family: "Roboto Slab", serif;
   letter-spacing: 1px;
-  text-align: center;
+  line-height: 60px;
 
   background-position: center center;
   background-size: contain;
@@ -136,7 +207,7 @@ body {
 }
 
 #main .section#first_banner .layer#text_layer #text #name {
-  font-size: 43px;
+  font-size: 0.97em;
   letter-spacing: 2px;
   font-weight: 600;
   font-family: "Roboto Slab", serif;
@@ -155,12 +226,44 @@ body {
   animation: textShine 8s ease-in-out infinite;
 }
 #main .section#first_banner .layer#text_layer #text #prof {
-  font-size: 47px;
+  font-size: 1.08em;
   font-family: KhaylaAlmira;
+}
+
+#main .section#first_banner .layer#text_layer #mypic {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  margin-left: 5%;
 }
 /*-------------------------------------*/
 
 #main .section#first_banner .layer#pic_layer {
+  position: absolute;
+  z-index: 1;
+}
+
+/*-------------------------------------*/
+#main .section#first_banner #scroll_down {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+#main .section#first_banner #scroll_down #wrapper {
+  animation: animScrollDown 4s ease-in-out infinite;
+}
+
+#main .section#first_banner #scroll_down #logo {
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-width: 0 3px 3px 0;
+  border-color: white;
+  transform: rotate(45deg);
 }
 
 /*-------------------------------------*/
@@ -218,6 +321,18 @@ body {
     transform: rotate(360deg);
   }
 }
+
+@keyframes animScrollDown {
+  0% {
+    transform: translateY(-20px) scale(1.2, 0.8);
+  }
+  50% {
+    transform: translateY(20px) scale(0.9, 1.1);
+  }
+  100% {
+    transform: translateY(-20px) scale(1.2, 0.8);
+  }
+}
 /*-------------------------------------*/
 
 #pointer_circle {
@@ -258,33 +373,97 @@ body {
   height: 80%;
   animation: animPointerCircle 8s linear infinite;
 }
+
+#pic_layer canvas {
+  transition: background 0.3s;
+}
 /*------------------------------*/
 
 @media screen and (min-width: 750px) {
   #main .section#first_banner {
-    flex-direction: row;
+    /* flex-direction: row; */
   }
   #main .section#first_banner .layer#text_layer {
-    height: 100vh;
-    width: 60%;
   }
 
   #main .section#first_banner .layer#pic_layer {
     height: 100vh;
-    width: 40%;
+    width: 50%;
+    right: 0%;
+  }
+
+  #main .section#first_banner .layer#text_layer #text {
+    font-size: 45px;
+  }
+
+  #main .section#first_banner .layer#text_layer #mypic {
+    top: 150px;
   }
 }
+
 @media screen and (max-width: 750px) {
   #main .section#first_banner {
-    flex-direction: column;
+    /* flex-direction: column; */
   }
   #main .section#first_banner .layer#text_layer {
-    height: 60vh;
+    height: 100vh;
     width: 100%;
   }
 
   #main .section#first_banner .layer#pic_layer {
-    height: 40vh;
+    height: 50vh;
     width: 100%;
+    bottom: 0%;
+  }
+
+  #main .section#first_banner .layer#text_layer #text {
+    font-size: 35px;
+  }
+
+  #main .section#first_banner .layer#text_layer #mypic {
+    top: 100px;
+  }
+  #header.float {
+    left: 10px;
+    width: calc(100% - 10px * 2);
   }
 }
+/*---------------------------------------------------*/
+
+@media (pointer: fine) {
+}
+
+@media (pointer: coarse) {
+  #pointer_circle {
+    display: none;
+  }
+}
+
+/*---------------------------------------------------*/
+
+@media screen and (min-width: 1000px) {
+  #main .section#first_banner .layer#text_layer {
+    height: 100vh;
+    width: 50%;
+    left: 0%;
+  }
+
+  #header.float {
+    left: 10%;
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width: 1000px) {
+  #main .section#first_banner .layer#text_layer {
+    height: 100vh;
+    width: 70%;
+    left: 15%;
+  }
+
+  #header.float {
+    left: 10px;
+    width: calc(100% - 10px * 2);
+  }
+}
+/*---------------------------------------------------*/
