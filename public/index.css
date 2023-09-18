@@ -36,6 +36,9 @@
 * {
   font-family: "Quicksand", sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
 /*-------------------------------------*/
 body {
   margin: 0;
@@ -95,6 +98,10 @@ body {
   animation: headerBouncy 1.5s ease-in;
 }
 
+/* #header.float.wobble {
+  animation: headerBouncy 1.5s ease-in;
+} */
+
 /*----sh text at left of header ---*/
 
 #header #text {
@@ -142,7 +149,7 @@ body {
   padding: 0 15px 0 15px;
   font-size: 20px;
   line-height: 1em;
-  font-family: "Mooli";
+  font-family: "Mooli", sans-serif;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   transition: all 0.3s;
 }
@@ -187,6 +194,111 @@ body {
   opacity: 1;
 }
 
+/*----header menu for mobile view ---*/
+
+#header #menu_button {
+  display: none;
+  position: relative;
+  height: 100%;
+  /* display: flex; */
+  align-items: center;
+  height: calc(100% - 5px * 2);
+  margin: 5px 0 5px 0;
+  box-sizing: border-box;
+}
+/*---*/
+
+#header #menu_button::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.2s;
+
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+  border-radius: 11px;
+  border: 1px solid #ffffff4d;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+  background-color: #b7b7b72e;
+  transform: scale(0.8);
+  opacity: 0;
+  backdrop-filter: blur(5px);
+}
+
+#header #menu_button:hover::after {
+  transform: scale(1);
+  opacity: 1;
+}
+/*-------------------------------------------*/
+
+#header #menu_icon {
+  flex-grow: 0;
+  width: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  transition: background-color 0.2s;
+}
+
+#header #menu_icon .line {
+  position: relative;
+  top: 0;
+  width: 60%;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  transform-origin: center center;
+  transition: transform 0.2s 0.3s, top 0.5s 0.3s, opacity 0.5s 0.3s,
+    width 0.5s 0.3s;
+}
+
+/*--------------------*/
+/*------------------------------------*/
+
+#header.open_menu #menu_icon #line1 {
+  /* background:red; */
+  transform: translateY(6px) rotateZ(45deg);
+  transition: transform 0.5s 0.3s;
+}
+#header.open_menu #menu_icon #line2 {
+  opacity: 0;
+  width: 0;
+  transition: opacity 0.3s 0.2s, width 0.3s 0.1s;
+}
+#header.open_menu #menu_icon #line3 {
+  transform: translateY(-6px) rotateZ(-45deg);
+  transition: transform 0.5s 0.3s;
+}
+/*-------------------------------------*/
+/*----Actual MENU ---*/
+
+#menu {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+
+  background-color: #2a2a2a77;
+  /* background-color: #000000; */
+  backdrop-filter: blur(80px);
+  z-index: 80;
+
+  transform: translateX(100%);
+
+  transition: all 0.3s;
+}
+
+#menu.open_menu {
+  transform: translateX(0%);
+}
+
 /*-------------------------------------*/
 /*----Actual MAIN containt ---*/
 
@@ -201,12 +313,15 @@ body {
 #main .section {
   transform: translateX(0%);
   opacity: 1;
+  scroll-margin-top: calc(var(--header-height, 50px) + 20px);
+  --webkit-scroll-margin-top: 50px;
+  scroll-snap-margin-top: 50px; /* iOS 11 and older */
 
   filter: blur(0px);
   --webkit-filter: blur(0px);
   --moz-filter: blur(0px);
 
-  overflow: hidden;
+  /* overflow: hidden; */ /* scroll-margin-top won't work if its on */
 
   transition: all 0.5s;
 }
@@ -260,10 +375,11 @@ body {
   font-family: "Roboto Slab", serif;
   background: linear-gradient(
     to right,
-    #00729b 20%,
-    #009b7f 30%,
-    rgb(1, 205, 79) 70%,
-    #00729b 80%
+    #ffdb0f 20%,
+    #8f0fff 35%,
+    #0089c9 50%,
+    #00c91e 65%,
+    #ffdb0f 80%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -323,6 +439,12 @@ body {
 
 #main .section#skills {
   min-height: 100vh;
+}
+#main .section#skills #skill_text {
+  font-size: 35px;
+  font-family: "Mooli", sans-serif;
+  text-align: center;
+  margin: 0 0 50px 0;
 }
 #main .section#skills #skills_shelf {
   display: grid;
@@ -541,6 +663,14 @@ body {
 
   #main .section#skills #skills_shelf {
     grid-gap: 15px;
+  }
+
+  #header #menu_button {
+    display: flex;
+  }
+
+  #header #navbar {
+    display: none; /* temporary */
   }
 }
 /*---------------------------------------------------*/

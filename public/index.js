@@ -1,17 +1,26 @@
+let isMenuOpen = false;
+/////////////////////////////////////////////////////////////////////////
+
 const header = document.querySelector("#header");
+const navbar = document.querySelector("#header #navbar");
 const pointer_circle = document.querySelector("#pointer_circle");
 const pic_layer = document.querySelector("#first_banner #pic_layer");
 const sectionElms = document.querySelectorAll("#main .section");
 const sectionElmsHid = document.querySelectorAll("#main .section.hidden");
 const skillsSection = document.querySelector("#main .section#skills");
 const itemsOfSkills = document.querySelectorAll("#main .section#skills .item");
+const headerMenuButton = document.querySelector("#header #menu_button");
+const menu = document.querySelector("#menu");
 
 ////////////////////////////////////////////////////////////////////////
 window.onscroll = function (e) {
   handleHeader(e);
   // handleKinet(e);
 };
-document.onload = handleHeader;
+window.onload = function (e) {
+  handleHeader(e);
+  menu.innerHTML = navbar.innerHTML + menu.innerHTML;
+};
 document.addEventListener("mousemove", function (e) {
   handleKinet(e);
   handlePicColorChange(detectMouseSpeed(e));
@@ -27,6 +36,16 @@ document.addEventListener("mouseup", () => {
   pic_layer.querySelector("canvas").style.backgroundColor = "transparent";
 });
 
+headerMenuButton.onclick = function () {
+  showMenu();
+};
+
+// header.onclick = function (e) {
+//   if (e.target === header) {
+//     wobbleHeader();
+//   }
+// };
+
 //////////////////////////////////////////////////
 
 function handleHeader() {
@@ -34,7 +53,11 @@ function handleHeader() {
   if (window.scrollY == 0) {
     header.classList.remove("float");
   } else if (window.scrollY > 0) {
-    header.classList.add("float");
+    // console.log(header.classList.contains("float"));
+    if (!header.classList.contains("float")) {
+      header.classList.add("float");
+      // wobbleHeader();
+    }
   }
 }
 /////////////////////////////////////////////////////////////////////
@@ -149,3 +172,21 @@ function handleCardGradAnim(e) {
     card.style.setProperty("--mouse-y", `${y}px`);
   }
 }
+//////////////////////////////////////////////////////////////////
+function showMenu() {
+  if (!this.isMenuOpen) {
+    header.classList.add("open_menu");
+    menu.classList.add("open_menu");
+  } else {
+    header.classList.remove("open_menu");
+    menu.classList.remove("open_menu");
+  }
+  this.isMenuOpen = !this.isMenuOpen;
+}
+/////////////////////////////////////////////////////
+// function wobbleHeader() {
+//   header.classList.add("wobble");
+//   setTimeout(() => {
+//     header.classList.remove("wobble");
+//   }, 2 * 1000);
+// }
