@@ -1,3 +1,5 @@
+/*----FONT FACES ---*/
+
 @font-face {
   font-family: yyy;
   font-weight: 400;
@@ -23,28 +25,40 @@
   font-weight: 400;
   src: url("./fonts/Khayla\ Almira\ 400.otf");
 }
+/*---- DOM TOP PRESETS ---*/
 
 :root {
   --header-height: 50px;
 }
 
 * {
+  font-family: "Quicksand", sans-serif;
 }
 /*-------------------------------------*/
 body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  /* background-color: black; */
+  background-color: #000912;
+  /* background-image: linear-gradient(105deg, rgb(0 35 35), rgb(0 3 23)); */
+  background-image: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(119, 154, 198, 0.3),
+    transparent
+  );
+  background-attachment: fixed;
   color: white;
   overflow-x: hidden;
 }
 /*-------------------------------------*/
+/*----MAIN Container ---*/
 
 #container {
   /* height: 100vh;
   overflow-y: auto; */
 }
 /*-------------------------------------*/
+/*----HEADER ---*/
 
 #header {
   position: fixed;
@@ -64,16 +78,21 @@ body {
   box-sizing: border-box;
   transition: all 0.3s;
 }
+/*----HEADER When scrolled down ---*/
 
 #header.float {
   top: 10px;
-  background-color: #626262a3;
-  backdrop-filter: blur(30px) saturate(120%);
+  background-color: #6262626f;
+  backdrop-filter: blur(20px) saturate(85%);
   border: 1px solid #ffffff4d;
   /* border: 1px solid #ffffff14; */
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
   padding: 0px 5px 0 15px;
+  animation: headerBouncy 1.5s ease-in;
 }
+
+/*----sh text at left of header ---*/
+
 #header #text {
   font-family: yyy;
   letter-spacing: 1px;
@@ -93,12 +112,13 @@ body {
 }
 
 /*------------------------------*/
+/*----header links ---*/
 
 #header #navbar {
   height: 100%;
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 5px;
 }
 #header #navbar a {
   text-decoration: none;
@@ -143,9 +163,10 @@ body {
   border: 1px solid #ffffff4d;
   box-sizing: border-box;
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-  background-color: #b7b7b753;
+  background-color: #b7b7b72e;
   transform: scale(0.8);
   opacity: 0;
+  backdrop-filter: blur(5px);
 }
 
 #header #navbar a:hover .navbar_link {
@@ -162,6 +183,7 @@ body {
 }
 
 /*-------------------------------------*/
+/*----Actual MAIN containt ---*/
 
 #main {
   display: flex;
@@ -169,20 +191,43 @@ body {
   gap: 100px;
 }
 /*-------------------------------------*/
+/*---- sections ---*/
 
 #main .section {
+  transform: translateX(0%);
+  opacity: 1;
+
+  filter: blur(0px);
+  --webkit-filter: blur(0px);
+  --moz-filter: blur(0px);
+
+  overflow: hidden;
+
+  transition: all 0.5s;
+}
+
+#main .section.hidden {
+  opacity: 0;
+  transform: translateX(-100%);
+
+  filter: blur(25px);
+  --webkit-filter: blur(25px);
+  --moz-filter: blur(25px);
 }
 /*-------------------------------------*/
+/*----First cover when opened ---*/
 
 #main .section#first_banner {
   height: 100vh;
   overflow: hidden;
   position: relative;
   display: flex;
+  background-color: black;
 }
 
 #main .section#first_banner .layer {
 }
+/*----Text at first cover ---*/
 
 #main .section#first_banner .layer#text_layer {
   position: absolute;
@@ -205,6 +250,7 @@ body {
   background-repeat: no-repeat;
   /* background-image: url("./images/logo_blob_solid.svg"); */
 }
+/*----my name anim ---*/
 
 #main .section#first_banner .layer#text_layer #text #name {
   font-size: 0.97em;
@@ -229,6 +275,7 @@ body {
   font-size: 1.08em;
   font-family: KhaylaAlmira;
 }
+/*----my pic ---*/
 
 #main .section#first_banner .layer#text_layer #mypic {
   position: absolute;
@@ -238,6 +285,7 @@ body {
   margin-left: 5%;
 }
 /*-------------------------------------*/
+/*----animated topography ---*/
 
 #main .section#first_banner .layer#pic_layer {
   position: absolute;
@@ -245,6 +293,8 @@ body {
 }
 
 /*-------------------------------------*/
+/*---- anim down logo ---*/
+
 #main .section#first_banner #scroll_down {
   position: absolute;
   bottom: 10%;
@@ -267,73 +317,98 @@ body {
 }
 
 /*-------------------------------------*/
+/*----SKILLS section ---*/
 
 #main .section#skills {
+  min-height: 100vh;
+}
+#main .section#skills #skills_shelf {
   display: grid;
-  grid-auto-columns: 150px;
-  grid-template-columns: repeat(auto-fit, 300px);
+  /* grid-auto-columns: 150px; */
+  grid-template-columns: repeat(auto-fit, 150px);
   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
   justify-content: center;
   grid-gap: 30px;
 }
 #main .section#skills .item {
-  background-color: var(--skill-color);
-  height: 300px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px;
+  /* background-image: var(--skill-color); */
+  background-color: rgb(0, 24, 35);
+  background-image: radial-gradient(
+    circle at center,
+    var(--skill-color) 0%,
+    transparent
+  );
+  /* height: 300px; */
+  /* box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 3px; */
+
+  box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.5),
+    0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+/*------------------------------------------*/
+/*------------ handling anim -------------*/
+
+#main .section#skills.hidden .item {
+  opacity: 0;
+  transform: translateX(-10%);
+
+  filter: blur(15px);
+  --webkit-filter: blur(15px);
+  --moz-filter: blur(15px);
+
+  transition: none;
 }
 
+#main .section#skills .item {
+  opacity: 1;
+  transform: translateX(0%);
+
+  filter: blur(0px);
+  --webkit-filter: blur(0px);
+  --moz-filter: blur(0px);
+
+  transition: all 0.3s;
+  transition-delay: var(--skill-appear-delay);
+}
+/*------------------------------------------*/
+
 #main .section#skills .item .image {
-  height: 150px;
+  margin: 10px;
+  box-sizing: border-box;
+  width: calc(100% - 10px * 2);
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
-  background-color: rgb(48, 48, 48);
+  /* background-color: rgb(48, 48, 48); */
 }
-
+#main .section#skills .item .name {
+  font-size: 20px;
+  text-align: center;
+  word-wrap: break-word;
+  margin: 0 10px;
+}
 #main .section#skills .item .level {
   width: 80%;
+  margin: 10px auto 10px auto;
   height: 5px;
-  background-color: aliceblue;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
 }
 
 #main .section#skills .item .level .bar {
-  background-color: red;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
   height: 5px;
   width: var(--skill-level-bar-width);
 }
 /*-------------------------------------*/
-@keyframes textShine {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-@keyframes animPointerCircle {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes animScrollDown {
-  0% {
-    transform: translateY(-20px) scale(1.2, 0.8);
-  }
-  50% {
-    transform: translateY(20px) scale(0.9, 1.1);
-  }
-  100% {
-    transform: translateY(-20px) scale(1.2, 0.8);
-  }
-}
-/*-------------------------------------*/
+/*----cursor following circle ---*/
 
 #pointer_circle {
   width: 80px;
@@ -377,6 +452,8 @@ body {
 #pic_layer canvas {
   transition: background 0.3s;
 }
+/*------------------------------*/
+/*----MEDIA QUERIES ---*/
 /*------------------------------*/
 
 @media screen and (min-width: 750px) {
@@ -429,6 +506,7 @@ body {
   }
 }
 /*---------------------------------------------------*/
+/*----touch or pointer device ---*/
 
 @media (pointer: fine) {
 }
@@ -440,17 +518,13 @@ body {
 }
 
 /*---------------------------------------------------*/
+/*----first banner adj. ---*/
 
 @media screen and (min-width: 1000px) {
   #main .section#first_banner .layer#text_layer {
     height: 100vh;
     width: 50%;
     left: 0%;
-  }
-
-  #header.float {
-    left: 10%;
-    width: 80%;
   }
 }
 
@@ -467,3 +541,97 @@ body {
   }
 }
 /*---------------------------------------------------*/
+/*----header length adj. ---*/
+
+@media screen and (min-width: 1400px) {
+  #header.float {
+    left: 20%;
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  #header.float {
+    left: 15%;
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1100px) and (max-width: 1200px) {
+  #header.float {
+    left: 10%;
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1100px) {
+  #header.float {
+    left: 5%;
+    width: 90%;
+  }
+}
+/* -----------------------------------------------*/
+@media (prefers-reduced-motion) {
+  #main .section {
+    transition: none;
+  }
+}
+
+/*-----------------------------------------------*/
+/*----ANIMATIONs ---*/
+
+@keyframes textShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes animPointerCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animScrollDown {
+  0% {
+    transform: translateY(-20px) scale(1.2, 0.8);
+  }
+  50% {
+    transform: translateY(20px) scale(0.9, 1.1);
+  }
+  100% {
+    transform: translateY(-20px) scale(1.2, 0.8);
+  }
+}
+
+@keyframes headerBouncy {
+  0% {
+    transform: scaleX(1);
+  }
+  16.66% {
+    transform: scaleX(0.91);
+  }
+  33.33% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.98);
+  }
+  66.66% {
+    transform: scaleX(1);
+  }
+  83.33% {
+    transform: scaleX(0.99);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+/*-------------------------------------*/
