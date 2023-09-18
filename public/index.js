@@ -1,7 +1,9 @@
 const header = document.querySelector("#header");
 const pointer_circle = document.querySelector("#pointer_circle");
 const pic_layer = document.querySelector("#first_banner #pic_layer");
+const sectionElms = document.querySelectorAll("#main .section");
 
+////////////////////////////////////////////////////////////////////////
 window.onscroll = function (e) {
   handleHeader(e);
   // handleKinet(e);
@@ -20,6 +22,7 @@ document.addEventListener("mouseup", () => {
   pointer_circle.classList.remove("clicked");
   pic_layer.querySelector("canvas").style.backgroundColor = "black";
 });
+//////////////////////////////////////////////////
 
 function handleHeader() {
   //   console.log(window.scrollY);
@@ -45,7 +48,7 @@ kinet.on("tick", function (instances) {
     instances.y.velocity / 2
   }deg)`;
 });
-let aaa;
+// let aaa;
 // call kinet animate method on mousemove
 function handleKinet(event) {
   kinet.animate(
@@ -53,7 +56,7 @@ function handleKinet(event) {
     window.scrollX + event.clientX - document.body.clientWidth / 2
   );
   kinet.animate("y", window.scrollY + event.clientY - window.innerHeight / 2);
-  aaa = event;
+  // aaa = event;
 }
 
 // log
@@ -116,3 +119,17 @@ function handlePicColorChange(
   // console.log(num, col);
   pic_layer.querySelector("canvas").style.backgroundColor = "#000b65" + col;
 }
+///////////////////////////////////////////////////////////////////////
+const sectionElmObserver = new IntersectionObserver((elms) => {
+  for (elm of elms) {
+    // console.log(elm);
+    if (elm.isIntersecting) {
+      elm.target.classList.remove("hidden");
+    } else {
+      elm.target.classList.add("hidden");
+    }
+  }
+});
+sectionElms.forEach((elm) => {
+  sectionElmObserver.observe(elm);
+});

@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
@@ -29,10 +33,11 @@
           <a href="#Experience"><div class="navbar_link">Experience</div></a>
           <a href="#Education"><div class="navbar_link">Education</div></a>
           <a href="#Contact"><div class="navbar_link">Contact</div></a>
+          <a href="#Blogs"><div class="navbar_link">Blogs</div></a>
         </div>
       </div>
       <div id="main">
-        <div id="first_banner" class="section">
+        <div id="first_banner" class="section hidden">
           <div id="text_layer" class="layer">
             <img src="./images/mypic.jpg" width="100" height="100" id="mypic" />
             <div id="text">
@@ -52,25 +57,30 @@
             <div id="actual_circle"></div>
           </div>
         </div>
-        <div id="skills" class="section">
-          <% for (skill of portfolioData.skills) { %>
-          <div
-            class="item"
-            style="
-              --skill-level-bar-width: <%= skill.level %>%;
-              --skill-color: <%= skill.color %>;
-            "
-          >
+        <div id="skills" class="section hidden">
+          <br /><br /><br />
+          <div id="skills_shelf">
+            <% for (let i = 0; i < portfolioData.skills.length; i++) { //fg ///
+            const skill = portfolioData.skills[i]; %>
             <div
-              class="image"
-              style="background-image: url('<%= skill.imgUrl %>')"
-            ></div>
-            <div class="name"><%= skill.name %></div>
-            <div class="level">
-              <div class="bar"></div>
+              class="item"
+              style="
+                --skill-level-bar-width: <%= skill.level %>%;
+                --skill-color: <%= skill.color %>;
+                --skill-appear-delay: <%= i * 0.1 %>s;
+              "
+            >
+              <div
+                class="image"
+                style="background-image: url('<%= skill.imgUrl %>')"
+              ></div>
+              <div class="name"><%= skill.name %></div>
+              <div class="level">
+                <div class="bar"></div>
+              </div>
             </div>
+            <% } %>
           </div>
-          <% } %>
         </div>
       </div>
       <div id="footer">ddd</div>
