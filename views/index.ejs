@@ -128,9 +128,11 @@
                 style="background-image: url('<%= skill.imgUrl %>')"
               ></div>
               <div class="name"><%= skill.name %></div>
+              <% if(skill.level){ %>
               <div class="level">
                 <div class="bar"></div>
               </div>
+              <% } %>
             </div>
             <% } %>
           </div>
