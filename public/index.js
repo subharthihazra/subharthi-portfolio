@@ -14,6 +14,8 @@ const skillsSection = document.querySelector("#main .section#skills");
 const itemsOfSkills = document.querySelectorAll("#main .section#skills .item");
 const headerMenuButton = document.querySelector("#header #menu_button");
 const menu = document.querySelector("#menu");
+const menuWrapper = document.querySelector("#menu #wrapper");
+let menuLinks = undefined;
 
 ////////////////////////////////////////////////////////////////////////
 window.onscroll = function (e) {
@@ -21,9 +23,8 @@ window.onscroll = function (e) {
   // handleKinet(e);
 };
 window.onload = function (e) {
-  const actualMenuList = menu.querySelector("#wrapper");
   handleHeader(e);
-  actualMenuList.innerHTML = navbar.innerHTML + actualMenuList.innerHTML;
+  handleMenuDOM();
 };
 document.addEventListener("mousemove", function (e) {
   handleKinet(e);
@@ -70,6 +71,19 @@ function handleHeader() {
       header.classList.add("float");
       // wobbleHeader();
     }
+  }
+}
+////////////////////////////////////////////////////////////////////
+function handleMenuDOM() {
+  menuWrapper.innerHTML = navbar.innerHTML + menuWrapper.innerHTML;
+  menuLinks = menuWrapper.querySelectorAll(".navbar_link");
+  for (let i = 0; i < menuLinks.length; i++) {
+    menuLinks[i].style.setProperty("--link-iterator", i);
+    menuLinks[i].addEventListener("click", () => {
+      if (isMenuOpen) {
+        showMenu();
+      }
+    });
   }
 }
 /////////////////////////////////////////////////////////////////////

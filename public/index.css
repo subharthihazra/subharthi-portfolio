@@ -325,12 +325,8 @@ body {
   letter-spacing: 1px;
   justify-content: center;
 
-  transform: scale(1.5);
+  transform: scale(1.2);
   opacity: 0;
-
-  filter: blur(25px);
-  --webkit-filter: blur(25px);
-  --moz-filter: blur(25px);
 
   transition-property: all;
   transition-duration: 0.3s;
@@ -345,22 +341,43 @@ body {
   font-size: 30px;
   color: white;
   font-family: "Mooli", sans-serif;
-  transition: all 0.3s;
+  transform: translateX(-10%);
+  opacity: 0;
+  position: relative;
+
+  transition-property: transform, opacity;
+  transition-duration: 0s;
+  transition-delay: 0.3s;
 }
 
-#menu .navbar_link:hover {
-  text-shadow: 0 0 8px yellow;
+#menu .navbar_link::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: -20px;
+  height: 80%;
+  width: 5px;
+  background-color: #ff7b4f;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#menu .navbar_link:hover::before {
+  opacity: 1;
 }
 
 #menu.open_menu #wrapper {
   transform: scale(1);
   opacity: 1;
-
-  filter: blur(0px);
-  --webkit-filter: blur(0px);
-  --moz-filter: blur(0px);
 }
 
+#menu.open_menu .navbar_link {
+  transform: translateX(0%);
+  opacity: 1;
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+  transition-delay: calc(var(--link-iterator) * 0.05s);
+}
 /*-------------------------------------*/
 /*----Actual MAIN containt ---*/
 
