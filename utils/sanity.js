@@ -13,7 +13,7 @@ const client = createClient({
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
-async function getPosts() {
+async function getSkills() {
   const data = await client.fetch('*[_type == "skills"]');
   return data
     .map((item) =>
@@ -27,8 +27,45 @@ async function getPosts() {
     )
     .sort((a, b) => {
       return (b.priority ? b.priority : 0) - (a.priority ? a.priority : 0); // sorting priority wise
+      //   return data.map((item) => ({ name: item.name, level: item.level }));
     });
-  //   return data.map((item) => ({ name: item.name, level: item.level }));
 }
 
-module.exports = { getPosts };
+async function getProjects() {
+  const data = await client.fetch('*[_type == "projects"]');
+  return data
+    .map((item) =>
+      (({
+        name,
+        description,
+        livelink,
+        githublink,
+        techstacks,
+        color,
+        imgUrl,
+        priority,
+      }) => ({
+        name,
+        description,
+        livelink,
+        githublink,
+        techstacks,
+        color,
+        priority,
+        imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
+      }))(item)
+    )
+    .sort((a, b) => {
+      return (b.priority ? b.priority : 0) - (a.priority ? a.priority : 0); // sorting priority wise
+      //   return data.map((item) => ({ name: item.name, level: item.level }));
+    });
+}
+
+async function getDatas() {
+  let data2send = {};
+  data2send.skills = await getSkills();
+  data2send.projects = await getProjects();
+  return data2send;
+}
+
+module.exports = { getDatas };

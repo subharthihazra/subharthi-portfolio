@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 
 const portfolioData = require("./data");
-const { getPosts } = require("./utils/sanity");
+const { getDatas } = require("./utils/sanity");
 
 // static assets
 app.use(express.static(path.join(__dirname, "public")));
@@ -17,8 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get("/", async (req, res) => {
-  const portfolioData2 = {};
-  portfolioData2.skills = await getPosts();
+  const portfolioData2 = await getDatas();
+  // console.log(portfolioData2.projects);
   res.render("index", { portfolioData: portfolioData2 });
 });
 

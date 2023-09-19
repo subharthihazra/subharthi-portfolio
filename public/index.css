@@ -545,16 +545,19 @@ body {
 /*-------------------------------------*/
 /*----SKILLS section ---*/
 
-#main .section#skills {
+/* #main .section#skills { */
+#main .section {
   min-height: 100vh;
 }
-#main .section#skills #skill_text {
+/* #main .section#skills #skill_text { */
+#main .section .text {
   font-size: 35px;
   font-family: "Mooli", sans-serif;
   text-align: center;
   margin: 0 0 50px 0;
 }
-#main .section#skills #skills_shelf {
+/* #main .section#skills #skills_shelf { */
+#main .section .shelf {
   display: grid;
   /* grid-auto-columns: 150px; */
   grid-template-columns: repeat(auto-fit, 150px);
