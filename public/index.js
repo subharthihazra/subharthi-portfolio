@@ -1,4 +1,7 @@
 let isMenuOpen = false;
+let mouseSpeed = 0;
+
+let timerPicCol;
 /////////////////////////////////////////////////////////////////////////
 
 const header = document.querySelector("#header");
@@ -23,8 +26,16 @@ window.onload = function (e) {
 };
 document.addEventListener("mousemove", function (e) {
   handleKinet(e);
-  handlePicColorChange(detectMouseSpeed(e));
   handleCardGradAnim(e);
+
+  // clearTimeout(timerPicCol);
+  // timerPicCol = setTimeout(() => {
+  //   // if (mouseSpeed == 0) {
+  //   handlePicColorChange();
+  //   // }
+  // }, 300);
+  // detectMouseSpeed(e);
+  // handlePicColorChange();
 });
 document.addEventListener("mousedown", () => {
   pointer_circle.classList.add("clicked");
@@ -134,18 +145,17 @@ function detectMouseSpeed(e) {
   lastMouseX = e.screenX;
   lastMouseY = e.screenY;
 
-  return { speedX, speedY };
+  mouseSpeed = Math.sqrt(speedX * speedX + speedY * speedY);
 }
 ///----------------------------------------------------------------
-function handlePicColorChange(
-  { speedX = 0, speedY = 0 } = { speedX: 0, speedY: 0 }
-) {
-  let speed = Math.sqrt(speedX * speedX + speedY * speedY);
+function handlePicColorChange() {
   // console.log(speed);
-  let num = speed <= 99 ? speed : 99;
+  let num = mouseSpeed <= 99 ? mouseSpeed : 99;
   let col = parseInt((num / 99) * 255).toString(16);
   // console.log(num, col);
-  pic_layer.querySelector("canvas").style.backgroundColor = "#000000" + col;
+  if (pic_layer.querySelector("canvas")) {
+    pic_layer.querySelector("canvas").style.backgroundColor = "#000000" + col;
+  }
 }
 ///////////////////////////////////////////////////////////////////////
 const sectionElmObserver = new IntersectionObserver((elms) => {

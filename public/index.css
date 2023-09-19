@@ -290,18 +290,32 @@ body {
   width: 100%;
   height: 100vh;
 
-  background-color: #0a1b2b;
+  /* background-color: #0a1b2b; */
+
+  background-color: #000000bb;
+  /* background-image: linear-gradient(180deg, #15202b, #334358); */
   /* background-color: #000000; */
-  /* backdrop-filter: blur(80px); */
+  backdrop-filter: saturate(180%) blur(25px);
   z-index: 80;
+  padding-top: calc(var(--header-height) + 25px);
 
   transform: translateX(100%);
+  opacity: 0;
 
-  transition: all 0.3s;
+  transition: opacity 0.3s, transform 0s 0.3s;
 }
 
 #menu.open_menu {
   transform: translateX(0%);
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+#menu a {
+  text-decoration: none;
+  color: white;
+}
+#menu .navbar_link {
 }
 
 /*-------------------------------------*/
@@ -318,9 +332,11 @@ body {
 #main .section {
   transform: translateX(0%);
   opacity: 1;
-  scroll-margin-top: calc(var(--header-height, 50px) + 20px);
-  --webkit-scroll-margin-top: 50px;
-  scroll-snap-margin-top: 50px; /* iOS 11 and older */
+  scroll-margin-top: calc(var(--header-height, 50px) + 25px);
+  --webkit-scroll-margin-top: calc(var(--header-height, 50px) + 25px);
+  scroll-snap-margin-top: calc(
+    var(--header-height, 50px) + 25px
+  ); /* iOS 11 and older */
 
   filter: blur(0px);
   --webkit-filter: blur(0px);
@@ -353,7 +369,10 @@ body {
 #main .section#first_banner .layer#text_layer {
   position: absolute;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 50px;
   z-index: 2;
 }
 
@@ -364,7 +383,6 @@ body {
   font-weight: 300;
   font-family: "Roboto Slab", sans-serif;
   letter-spacing: 1px;
-  line-height: 60px;
 
   background-position: center center;
   background-size: contain;
@@ -402,11 +420,34 @@ body {
 /*----my pic ---*/
 
 #main .section#first_banner .layer#text_layer #mypic {
-  position: absolute;
+  /* position: absolute; */
   width: 80px;
   height: 80px;
   border-radius: 100%;
   margin-left: 5%;
+}
+#main .section#first_banner .layer#text_layer #links {
+  /* width: 180px; */
+  margin-left: 5%;
+  height: 80px;
+}
+/*--- social links in first banner ----*/
+#main .section#first_banner .layer#text_layer #links #wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 40px);
+  /* grid-gap: 15px; */
+}
+
+#main .section#first_banner .layer#text_layer #links .item {
+  background-color: var(--icon-color, #acacac);
+  height: 40px;
+  width: 40px;
+  /* border-radius: 100px; */
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#main .section#first_banner .layer#text_layer #links .item:hover {
+  transform: translateY(-3px);
 }
 /*-------------------------------------*/
 /*----animated topography ---*/
@@ -638,11 +679,12 @@ body {
 
   #main .section#first_banner .layer#text_layer #text {
     font-size: 45px;
+    line-height: 60px;
   }
 
-  #main .section#first_banner .layer#text_layer #mypic {
+  /* #main .section#first_banner .layer#text_layer #mypic {
     top: 150px;
-  }
+  } */
 
   #main .section.hidden {
     filter: blur(25px);
@@ -670,12 +712,13 @@ body {
   }
 
   #main .section#first_banner .layer#text_layer #text {
-    font-size: 35px;
+    font-size: 30px;
+    line-height: 40px;
   }
 
-  #main .section#first_banner .layer#text_layer #mypic {
+  /* #main .section#first_banner .layer#text_layer #mypic {
     top: 100px;
-  }
+  } */
   #header.float {
     left: 10px;
     width: calc(100% - 10px * 2);
@@ -686,14 +729,6 @@ body {
 
   #main .section#skills #skills_shelf {
     grid-gap: 15px;
-  }
-
-  #header #menu_button {
-    display: flex;
-  }
-
-  #header #navbar {
-    display: none; /* temporary */
   }
 }
 /*---------------------------------------------------*/
@@ -706,7 +741,7 @@ body {
   #pointer_circle {
     display: none;
   }
-  #main .section#skills .item {
+  #main .section#skills .item::before {
     background-image: radial-gradient(
       circle at 50% 50%,
       var(--skill-color) 0%,
@@ -782,6 +817,24 @@ body {
   }
   #main .section#skills .item {
     transition: none;
+  }
+}
+
+/*-----------------------------------------------*/
+/*----phone and PC view menu nav switch ---*/
+
+@media screen and (min-width: 900px) {
+  #menu {
+    display: none;
+  }
+}
+@media screen and (max-width: 900px) {
+  #header #navbar {
+    display: none; /* temporary */
+  }
+
+  #header #menu_button {
+    display: flex;
   }
 }
 
