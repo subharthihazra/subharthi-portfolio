@@ -50,9 +50,9 @@ headerMenuButton.onclick = function () {
 
 function handleHeader() {
   //   console.log(window.scrollY);
-  if (window.scrollY == 0) {
+  if (!isMenuOpen && window.scrollY == 0) {
     header.classList.remove("float");
-  } else if (window.scrollY > 0) {
+  } else if (window.scrollY > 0 || isMenuOpen) {
     // console.log(header.classList.contains("float"));
     if (!header.classList.contains("float")) {
       header.classList.add("float");
@@ -174,14 +174,15 @@ function handleCardGradAnim(e) {
 }
 //////////////////////////////////////////////////////////////////
 function showMenu() {
-  if (!this.isMenuOpen) {
+  if (!isMenuOpen) {
     header.classList.add("open_menu");
     menu.classList.add("open_menu");
   } else {
     header.classList.remove("open_menu");
     menu.classList.remove("open_menu");
   }
-  this.isMenuOpen = !this.isMenuOpen;
+  isMenuOpen = !isMenuOpen;
+  handleHeader();
 }
 /////////////////////////////////////////////////////
 // function wobbleHeader() {
