@@ -21,8 +21,9 @@ window.onscroll = function (e) {
   // handleKinet(e);
 };
 window.onload = function (e) {
+  const actualMenuList = menu.querySelector("#wrapper");
   handleHeader(e);
-  menu.innerHTML = navbar.innerHTML + menu.innerHTML;
+  actualMenuList.innerHTML = navbar.innerHTML + actualMenuList.innerHTML;
 };
 document.addEventListener("mousemove", function (e) {
   handleKinet(e);

@@ -52,7 +52,9 @@
         </div>
       </div>
 
-      <div id="menu"></div>
+      <div id="menu">
+        <div id="wrapper"></div>
+      </div>
 
       <div id="main">
         <div id="first_banner" class="section">
@@ -118,7 +120,7 @@
               style="
                 --skill-level-bar-width: <%= skill.level %>%;
                 --skill-color: <%= skill.color %>;
-                --skill-appear-delay: <%= i * 0.1 %>s;
+                --skill-iterator: <%= i %>;
               "
             >
               <div
