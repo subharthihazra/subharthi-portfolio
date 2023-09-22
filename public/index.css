@@ -635,9 +635,7 @@ body {
   border-radius: 5px;
 
   background-position: center center;
-  /* background-size: contain; */
   background-repeat: no-repeat;
-  /* background-color: rgb(48, 48, 48); */
 }
 #main .cards_section .item .name {
   font-size: 20px;
@@ -696,7 +694,33 @@ body {
 #main .section#projects .item .image {
   aspect-ratio: 1.8 / 1;
   background-size: cover;
+  position: relative;
 }
+
+#main .section#projects .item .image::before {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  box-sizing: border-box;
+
+  background-color: #00000077;
+  background-position: center center;
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-image: url("./images/expand_logo.svg");
+
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+}
+#main .section#projects .item:hover .image::before {
+  opacity: 1;
+}
+
 #main .section#projects .shelf {
   grid-template-columns: repeat(auto-fit, 250px);
 }
@@ -878,9 +902,12 @@ body {
   #main .section#skills {
     padding: 0 10px;
   }
-
   #main .section#skills .shelf {
     grid-gap: 15px;
+  }
+
+  #main .section#projects {
+    padding: 0 10px;
   }
   #main .section#projects .shelf {
     grid-gap: 15px;
@@ -916,7 +943,10 @@ body {
   }
 
   #main .section#skills {
-    padding: 0 15%;
+    padding: 0 10%;
+  }
+  #main .section#projects {
+    padding: 0 10%;
   }
 }
 
@@ -933,6 +963,9 @@ body {
   }
 
   #main .section#skills {
+    padding: 0 max(5%, 10px);
+  }
+  #main .section#projects {
     padding: 0 max(5%, 10px);
   }
 }

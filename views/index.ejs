@@ -160,15 +160,15 @@
               <div class="name"><%= project.name %></div>
               <div id="links">
                 <% if(project.githublink){ %>
-                <a href="<%= project.githublink %>">
+                <a href="<%= project.githublink %>" target="_blank">
                   <div id="project_githublink" class="link"></div>
                 </a>
                 <% } %> <% if(project.videolink){ %>
-                <a href="<%= project.videolink %>">
+                <a href="<%= project.videolink %>" target="_blank">
                   <div id="project_videolink" class="link"></div>
                 </a>
                 <% } %> <% if(project.livelink){ %>
-                <a href="<%= project.livelink %>">
+                <a href="<%= project.livelink %>" target="_blank">
                   <div id="project_livelink" class="link"></div>
                 </a>
                 <% } %>
