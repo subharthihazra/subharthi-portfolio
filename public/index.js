@@ -10,8 +10,15 @@ const pointer_circle = document.querySelector("#pointer_circle");
 const pic_layer = document.querySelector("#first_banner #pic_layer");
 const sectionElms = document.querySelectorAll("#main .section");
 const sectionElmsHid = document.querySelectorAll("#main .section.hidden");
+
 const skillsSection = document.querySelector("#main .section#skills");
 const itemsOfSkills = document.querySelectorAll("#main .section#skills .item");
+
+const projectsSection = document.querySelector("#main .section#projects");
+const itemsOfProjects = document.querySelectorAll(
+  "#main .section#projects .item"
+);
+
 const headerMenuButton = document.querySelector("#header #menu_button");
 const menu = document.querySelector("#menu");
 const menuWrapper = document.querySelector("#menu #wrapper");
@@ -188,13 +195,15 @@ sectionElmsHid.forEach((elm) => {
 });
 ///////////////////////////////////////////////////////////////////
 function handleCardGradAnim(e) {
-  for (const card of itemsOfSkills) {
-    const rect = card.getBoundingClientRect(),
-      x = e.clientX - rect.left,
-      y = e.clientY - rect.top;
+  for (cardsec of [itemsOfSkills, itemsOfProjects]) {
+    for (const card of cardsec) {
+      const rect = card.getBoundingClientRect(),
+        x = e.clientX - rect.left,
+        y = e.clientY - rect.top;
 
-    card.style.setProperty("--mouse-x", `${x}px`);
-    card.style.setProperty("--mouse-y", `${y}px`);
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    }
   }
 }
 //////////////////////////////////////////////////////////////////

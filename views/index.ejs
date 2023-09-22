@@ -110,7 +110,7 @@
             <div id="actual_circle"></div>
           </div>
         </div>
-        <div id="skills" class="section hidden">
+        <div id="skills" class="section cards_section hidden">
           <div id="skill_text" class="text">Skills</div>
           <div id="skills_shelf" class="shelf">
             <% for (let i = 0; i < portfolioData.skills.length; i++) { //fg ///
@@ -119,8 +119,8 @@
               class="item"
               style="
                 --skill-level-bar-width: <%= skill.level %>%;
-                --skill-color: <%= skill.color %>;
-                --skill-iterator: <%= i %>;
+                --card-color: <%= skill.color %>;
+                --card-iterator: <%= i %>;
               "
             >
               <div
@@ -138,7 +138,7 @@
           </div>
         </div>
 
-        <div id="projects" class="section hidden">
+        <div id="projects" class="section cards_section hidden">
           <script type="text/javascript">
             let projectDatas = {};
           </script>
@@ -149,8 +149,8 @@
             <div
               class="item"
               style="
-                --project-color: <%= project.color %>;
-                --project-iterator: <%= i %>;
+                --card-color: <%= project.color %>;
+                --card-iterator: <%= i %>;
               "
             >
               <div
@@ -158,26 +158,24 @@
                 style="background-image: url('<%= project.imgUrl %>')"
               ></div>
               <div class="name"><%= project.name %></div>
-              <div class="description"><%= project.description %></div>
-              <input
-                type="hidden"
-                name="project_livelink"
-                value="<%= project.livelink %>"
-              />
-              <input
-                type="hidden"
-                name="project_githublink"
-                value="<%= project.githublink %>"
-              />
-              <input
-                type="hidden"
-                name="project_githublink"
-                value="<%= project.githublink %>"
-              />
+              <div id="links">
+                <% if(project.githublink){ %>
+                <a href="<%= project.githublink %>">
+                  <div id="project_githublink" class="link"></div>
+                </a>
+                <% } %> <% if(project.videolink){ %>
+                <a href="<%= project.videolink %>">
+                  <div id="project_videolink" class="link"></div>
+                </a>
+                <% } %> <% if(project.livelink){ %>
+                <a href="<%= project.livelink %>">
+                  <div id="project_livelink" class="link"></div>
+                </a>
+                <% } %>
+              </div>
               <script type="text/javascript">
                 projectDatas[<%= i %>] = {};
-                projectDatas[<%= i %>].livelink = `<%= project.livelink %>`;
-                projectDatas[<%= i %>].githublink = `<%= project.githublink %>`;
+                projectDatas[<%= i %>].description = `<%= project.description %>`;
                 projectDatas[<%= i %>].techstacks = [<%
                  for(techstack of project.techstacks){
                   %>"<%= techstack %>",<%

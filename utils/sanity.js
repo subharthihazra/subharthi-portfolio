@@ -17,7 +17,7 @@ async function getSkills() {
   const data = await client.fetch('*[_type == "skills"]');
   return data
     .map((item) =>
-      (({ name, level, color, imgUrl, priority }) => ({
+      (({ name = "", level, color = "", imgUrl = "", priority }) => ({
         name,
         level,
         color,
@@ -36,19 +36,21 @@ async function getProjects() {
   return data
     .map((item) =>
       (({
-        name,
-        description,
-        livelink,
-        githublink,
-        techstacks,
-        color,
-        imgUrl,
+        name = "",
+        description = "",
+        livelink = "",
+        githublink = "",
+        videolink,
+        techstacks = [],
+        color = "",
+        imgUrl = "",
         priority,
       }) => ({
         name,
         description,
         livelink,
         githublink,
+        videolink,
         techstacks,
         color,
         priority,
