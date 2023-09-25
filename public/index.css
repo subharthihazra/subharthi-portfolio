@@ -384,7 +384,8 @@ body {
 #main {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 1px;
+  /* gap: 100px; */
 }
 /*-------------------------------------*/
 /*---- sections ---*/
@@ -392,10 +393,10 @@ body {
 #main .section {
   transform: translateX(0%);
   opacity: 1;
-  scroll-margin-top: calc(var(--header-height, 50px) + 25px);
-  --webkit-scroll-margin-top: calc(var(--header-height, 50px) + 25px);
+  scroll-margin-top: calc(var(--header-height, 50px));
+  --webkit-scroll-margin-top: calc(var(--header-height, 50px));
   scroll-snap-margin-top: calc(
-    var(--header-height, 50px) + 25px
+    var(--header-height, 50px)
   ); /* iOS 11 and older */
 
   filter: blur(0px);
@@ -548,10 +549,10 @@ body {
   min-height: 100vh;
 }
 #main .cards_section .text {
-  font-size: 35px;
+  font-size: 30px;
   font-family: "Mooli", sans-serif;
   text-align: center;
-  margin: 0 0 50px 0;
+  margin: 50px 0;
 }
 #main .cards_section .shelf {
   display: grid;
@@ -624,7 +625,7 @@ body {
   --moz-filter: blur(0px);
 
   transition: all 0.3s;
-  transition-delay: calc(var(--card-iterator) * 0.1s + 0.3s);
+  transition-delay: calc(var(--card-iterator) * 0.08s + 0.5s);
 }
 /*------------------------------------------*/
 #main .cards_section .item .image {

@@ -7,7 +7,9 @@ let timerPicCol;
 const header = document.querySelector("#header");
 const navbar = document.querySelector("#header #navbar");
 const pointer_circle = document.querySelector("#pointer_circle");
+const first_banner = document.querySelector("#first_banner");
 const pic_layer = document.querySelector("#first_banner #pic_layer");
+
 const sectionElms = document.querySelectorAll("#main .section");
 const sectionElmsHid = document.querySelectorAll("#main .section.hidden");
 
@@ -34,24 +36,17 @@ window.onload = function (e) {
   handleMenuDOM();
 };
 document.addEventListener("mousemove", function (e) {
-  handleKinet(e);
   handleCardGradAnim(e);
-
-  // clearTimeout(timerPicCol);
-  // timerPicCol = setTimeout(() => {
-  //   // if (mouseSpeed == 0) {
-  //   handlePicColorChange();
-  //   // }
-  // }, 300);
-  // detectMouseSpeed(e);
-  // handlePicColorChange();
 });
-document.addEventListener("mousedown", () => {
+first_banner.addEventListener("mousemove", function (e) {
+  handleKinet(e);
+});
+first_banner.addEventListener("mousedown", () => {
   pointer_circle.classList.add("clicked");
   pic_layer.querySelector("canvas").style.backgroundColor = "#000000";
 });
 
-document.addEventListener("mouseup", () => {
+first_banner.addEventListener("mouseup", () => {
   pointer_circle.classList.remove("clicked");
   pic_layer.querySelector("canvas").style.backgroundColor = "transparent";
 });
