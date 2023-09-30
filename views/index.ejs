@@ -111,79 +111,91 @@
           </div>
         </div>
         <div id="skills" class="section cards_section hidden">
-          <div id="skill_text" class="text">Skills</div>
-          <div id="skills_shelf" class="shelf">
-            <% for (let i = 0; i < portfolioData.skills.length; i++) { //fg ///
-            const skill = portfolioData.skills[i]; %>
+          <div id="inner">
+            <div id="skill_text" class="text">Skills</div>
             <div
-              class="item"
-              style="
-                --skill-level-bar-width: <%= skill.level %>%;
-                --card-color: <%= skill.color %>;
-                --card-iterator: <%= i %>;
-              "
+              id="skills_shelf"
+              class="shelf"
+              style="--card-count: <%= portfolioData.skills.length %>"
             >
+              <% for (let i = 0; i < portfolioData.skills.length; i++) { //fg
+              const skill = portfolioData.skills[i]; %>
               <div
-                class="image"
-                style="background-image: url('<%= skill.imgUrl %>')"
-              ></div>
-              <div class="name"><%= skill.name %></div>
-              <% if(skill.level){ %>
-              <div class="level">
-                <div class="bar"></div>
+                class="item"
+                style="
+                  --skill-level-bar-width: <%= skill.level %>%;
+                  --card-color: <%= skill.color %>;
+                  --card-iterator: <%= i %>;
+                "
+              >
+                <div
+                  class="image"
+                  style="background-image: url('<%= skill.imgUrl %>')"
+                ></div>
+                <div class="name"><%= skill.name %></div>
+                <% if(skill.level){ %>
+                <div class="level">
+                  <div class="bar"></div>
+                </div>
+                <% } %>
               </div>
               <% } %>
             </div>
-            <% } %>
           </div>
         </div>
 
         <div id="projects" class="section cards_section hidden">
-          <script type="text/javascript">
-            let projectDatas = {};
-          </script>
-          <div id="project_text" class="text">Projects</div>
-          <div id="project_shelf" class="shelf">
-            <% for (let i = 0; i < portfolioData.projects.length; i++) { //fg
-            const project = portfolioData.projects[i]; %>
+          <div id="inner">
+            <script type="text/javascript">
+              let projectDatas = {};
+            </script>
+            <div id="project_text" class="text">Projects</div>
             <div
-              class="item"
-              style="
-                --card-color: <%= project.color %>;
-                --card-iterator: <%= i %>;
-              "
+              id="project_shelf"
+              class="shelf"
+              style="--card-count: <%= portfolioData.projects.length %>"
             >
+              <% for (let i = 0; i < portfolioData.projects.length; i++) { //fg
+              const project = portfolioData.projects[i]; %>
               <div
-                class="image"
-                style="background-image: url('<%= project.imgUrl %>')"
-              ></div>
-              <div class="name"><%= project.name %></div>
-              <div id="links">
-                <% if(project.githublink){ %>
-                <a href="<%= project.githublink %>" target="_blank">
-                  <div id="project_githublink" class="link"></div>
-                </a>
-                <% } %> <% if(project.videolink){ %>
-                <a href="<%= project.videolink %>" target="_blank">
-                  <div id="project_videolink" class="link"></div>
-                </a>
-                <% } %> <% if(project.livelink){ %>
-                <a href="<%= project.livelink %>" target="_blank">
-                  <div id="project_livelink" class="link"></div>
-                </a>
-                <% } %>
+                class="item"
+                style="
+                  --card-color: <%= project.color %>;
+                  --card-iterator: <%= i %>;
+                "
+              >
+                <div
+                  class="image"
+                  style="background-image: url('<%= project.imgUrl %>')"
+                ></div>
+                <div class="name"><%= project.name %></div>
+                <div id="links">
+                  <% if(project.githublink){ %>
+                  <a href="<%= project.githublink %>" target="_blank">
+                    <div id="project_githublink" class="link"></div>
+                  </a>
+                  <% } %> <% if(project.videolink){ %>
+                  <a href="<%= project.videolink %>" target="_blank">
+                    <div id="project_videolink" class="link"></div>
+                  </a>
+                  <% } %> <% if(project.livelink){ %>
+                  <a href="<%= project.livelink %>" target="_blank">
+                    <div id="project_livelink" class="link"></div>
+                  </a>
+                  <% } %>
+                </div>
+                <script type="text/javascript">
+                  projectDatas[<%= i %>] = {};
+                  projectDatas[<%= i %>].description = `<%= project.description %>`;
+                  projectDatas[<%= i %>].techstacks = [<%
+                   for(techstack of project.techstacks){
+                    %>"<%= techstack %>",<%
+                   }
+                  %>];
+                </script>
               </div>
-              <script type="text/javascript">
-                projectDatas[<%= i %>] = {};
-                projectDatas[<%= i %>].description = `<%= project.description %>`;
-                projectDatas[<%= i %>].techstacks = [<%
-                 for(techstack of project.techstacks){
-                  %>"<%= techstack %>",<%
-                 }
-                %>];
-              </script>
+              <% } %>
             </div>
-            <% } %>
           </div>
         </div>
       </div>

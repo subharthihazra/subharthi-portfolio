@@ -175,16 +175,21 @@ function handlePicColorChange() {
   }
 }
 ///////////////////////////////////////////////////////////////////////
+const sectionItemOptions = {
+  rootMargin: "-51px 0px -51px 0px",
+};
 const sectionElmObserver = new IntersectionObserver((elms) => {
   for (elm of elms) {
-    // console.log(elm);
+    // console.log(elm.target, elm.intersectionRatio, elm.isIntersecting);
+
     if (elm.isIntersecting) {
       elm.target.classList.remove("hidden");
     } else {
       elm.target.classList.add("hidden");
     }
   }
-});
+}, sectionItemOptions);
+
 sectionElmsHid.forEach((elm) => {
   sectionElmObserver.observe(elm);
 });
