@@ -29,6 +29,10 @@
       href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
   </head>
   <body>
     <div id="container">
@@ -39,7 +43,7 @@
           <a href="#skills"><div class="navbar_link">Skills</div></a>
           <a href="#projects"><div class="navbar_link">Projects</div></a>
           <!-- <a href="#experience"><div class="navbar_link">Experience</div></a> -->
-          <a href="#education"><div class="navbar_link">Education</div></a>
+          <!-- <a href="#education"><div class="navbar_link">Education</div></a> -->
           <a href="#contact"><div class="navbar_link">Contact</div></a>
           <!-- <a href="#blogs"><div class="navbar_link">Blogs</div></a> -->
         </div>
@@ -73,28 +77,36 @@
             </div>
             <div id="links">
               <div id="wrapper">
-                <div
-                  class="item"
-                  id="twitter"
-                  style="--icon-color: #111111"
-                ></div>
-                <div
-                  class="item"
-                  id="linkedin"
-                  style="--icon-color: #0d52c5"
-                ></div>
-                <div
-                  class="item"
-                  id="github"
-                  style="--icon-color: #111111"
-                ></div>
+                <a href="https://twitter.com/SubharthiHazra"
+                  ><span
+                    class="item fa-brands fa-x-twitter"
+                    style="--icon-color: #111111"
+                  ></span>
+                </a>
+                <a href="https://www.linkedin.com/in/subharthihazra/">
+                  <span
+                    class="item fa-brands fa-linkedin-in"
+                    style="--icon-color: #0d52c5"
+                  ></span>
+                </a>
+                <a href="https://github.com/subharthihazra">
+                  <span
+                    class="item fa-brands fa-github"
+                    style="--icon-color: #111111"
+                  ></span>
+                </a>
+                <a href="mailto:subharthi75@gmail.com">
+                  <span
+                    class="item fa-regular fa-envelope"
+                    style="--icon-color: #285d4c"
+                  ></span>
+                </a>
                 <!-- <div class="item" id="youtube" style="--icon-color: red"></div> -->
                 <!-- <div
                   class="item"
                   id="discord"
                   style="--icon-color: purple"
                 ></div> -->
-                <!-- <div class="item" id="mail" style="--icon-color: gray"></div> -->
                 <!-- <div class="item"></div> -->
               </div>
             </div>
@@ -113,24 +125,40 @@
         <div id="skills" class="section cards_section hidden">
           <div id="inner">
             <div id="skill_text" class="text">Skills</div>
+            <%
+            //////////////////////////////////////////////////////////////////////////////
+            let tot = 0;
+            //////////////////////////////////////////////////////////////////////////////
+            for(let i = 0; i < portfolioData.skills.length; i++) {
+            //////////////////////////////////////////////////////////////////////////////
+            tot += portfolioData.skills[i].group_elms.length;
+            //////////////////////////////////////////////////////////////////////////////
+            } %>
             <div
               id="skills_shelf"
               class="shelf"
-              style="--card-count: <%= portfolioData.skills.length %>"
+              style="--card-count: <%= tot %>"
             >
-              <% for (let i = 0; i < portfolioData.skills.length; i++) { //fg
-              const skill_group = portfolioData.skills[i]; %>
+              <%
+              //////////////////////////////////////////////////////////////////////////////
+              let cnt = 0;
+              //////////////////////////////////////////////////////////////////////////////
+              for (let i = 0; i < portfolioData.skills.length; i++) {
+              //////////////////////////////////////////////////////////////////////////////
+              skill_group = portfolioData.skills[i];
+              //////////////////////////////////////////////////////////////////////////////
+              %>
               <div class="group">
                 <div class="group_name"><%= skill_group.group_name %></div>
                 <div class="group_items">
-                  <% for (let j = 0; j < skill_group.group_elms.length; j++) {
-                  const skill = skill_group.group_elms[j]; %>
+                  <% for (let j = 0; j < skill_group.group_elms.length; j++,
+                  cnt++) { const skill = skill_group.group_elms[j]; %>
                   <div
                     class="item"
                     style="
                       --skill-level-bar-width: <%= skill.level %>%;
                       --card-color: <%= skill.color %>;
-                      --card-iterator: <%= i %>;
+                      --card-iterator: <%= cnt %>;
                     "
                   >
                     <div class="top">
@@ -208,8 +236,76 @@
             </div>
           </div>
         </div>
+
+        <div id="contact" class="section">
+          <div id="inner">
+            <div id="contact_text" class="text">Contact Me</div>
+            <p id="desc">
+              Thank you for exploring my portfolio! If you have any inquiries,
+              collaboration proposals, or if you simply want to connect, feel
+              free to reach out. I'm always open to new opportunities and
+              conversations.
+            </p>
+
+            <div id="links">
+              <div id="wrapper">
+                <a href="https://twitter.com/SubharthiHazra"
+                  ><span
+                    class="item fa-brands fa-x-twitter"
+                    style="--icon-color: #111111"
+                  ></span>
+                </a>
+                <a href="https://www.linkedin.com/in/subharthihazra/">
+                  <span
+                    class="item fa-brands fa-linkedin-in"
+                    style="--icon-color: #0d52c5"
+                  ></span>
+                </a>
+                <a href="https://github.com/subharthihazra">
+                  <span
+                    class="item fa-brands fa-github"
+                    style="--icon-color: #111111"
+                  ></span>
+                </a>
+                <a href="mailto:subharthi75@gmail.com">
+                  <span
+                    class="item fa-regular fa-envelope"
+                    style="--icon-color: #285d4c"
+                  ></span>
+                </a>
+                <!-- <div class="item" id="youtube" style="--icon-color: red"></div> -->
+                <!-- <div
+                  class="item"
+                  id="discord"
+                  style="--icon-color: purple"
+                ></div> -->
+                <!-- <div class="item"></div> -->
+              </div>
+            </div>
+
+            <h3>Let's Connect</h3>
+
+            <!-- Contact Form -->
+            <form action="" method="post">
+              <input type="text" placeholder="Your name (optional)" />
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="Send me a direct message ..."
+                required
+              ></textarea>
+              <button class="submit">
+                <span class="fa-regular fa-paper-plane"></span>
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div id="footer">ddd</div>
+
+      <div id="footer">
+        Made with <span class="fa-solid fa-heart"></span> by Subharthi Hazra
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
