@@ -583,11 +583,12 @@ body {
 #main .cards_section .group_name {
   font-size: 20px;
   margin: 25px 0;
+  text-align: center;
 }
 #main .cards_section .group_items {
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 #main .cards_section .item {
