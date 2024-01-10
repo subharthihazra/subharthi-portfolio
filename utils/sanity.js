@@ -16,23 +16,32 @@ const urlFor = (source) => builder.image(source);
 async function getSkills() {
   try {
     const data = await client.fetch('*[_type == "skills"]');
-    return data.map((bundle) => ({
-      group_name: bundle.group_name,
-      group_elms: bundle.group_elms
-        .map((item) =>
-          (({ name = "", level, color = "", imgUrl = "", priority }) => ({
-            name,
-            level,
-            color,
-            priority,
-            imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
-          }))(item)
-        )
-        .sort((a, b) => {
-          return (b.priority ? b.priority : 0) - (a.priority ? a.priority : 0); // sorting priority wise
-          //   return data.map((item) => ({ name: item.name, level: item.level }));
-        }),
-    }));
+    return data
+      .map((bundle) => ({
+        group_name: bundle.group_name,
+        group_prio: bundle.group_prio,
+        group_elms: bundle.group_elms
+          .map((item) =>
+            (({ name = "", level, color = "", imgUrl = "", priority }) => ({
+              name,
+              level,
+              color,
+              priority,
+              imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
+            }))(item)
+          )
+          .sort((a, b) => {
+            return (
+              (b.priority ? b.priority : 0) - (a.priority ? a.priority : 0)
+            ); // sorting priority wise
+            //   return data.map((item) => ({ name: item.name, level: item.level }));
+          }),
+      }))
+      .sort((a, b) => {
+        return (
+          (b.group_prio ? b.group_prio : 0) - (a.group_prio ? a.group_prio : 0)
+        ); // sorting group priority wise
+      });
   } catch (err) {
     return {};
   }
