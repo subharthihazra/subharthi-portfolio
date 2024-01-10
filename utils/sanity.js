@@ -14,53 +14,61 @@ const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
 async function getSkills() {
-  const data = await client.fetch('*[_type == "skills"]');
-  return data
-    .map((item) =>
-      (({ name = "", level, color = "", imgUrl = "", priority }) => ({
-        name,
-        level,
-        color,
-        priority,
-        imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
-      }))(item)
-    )
-    .sort((a, b) => {
-      return (b.priority ? b.priority : 0) - (a.priority ? a.priority : 0); // sorting priority wise
-      //   return data.map((item) => ({ name: item.name, level: item.level }));
-    });
+  try {
+    const data = await client.fetch('*[_type == "skills"]');
+    return data
+      .map((item) =>
+        (({ name = "", level, color = "", imgUrl = "", priority }) => ({
+          name,
+          level,
+          color,
+          priority,
+          imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
+        }))(item)
+      )
+      .sort((a, b) => {
+        return (b.priority ? b.priority : 0) - (a.priority ? a.priority : 0); // sorting priority wise
+        //   return data.map((item) => ({ name: item.name, level: item.level }));
+      });
+  } catch (err) {
+    return {};
+  }
 }
 
 async function getProjects() {
-  const data = await client.fetch('*[_type == "projects"]');
-  return data
-    .map((item) =>
-      (({
-        name = "",
-        description = "",
-        livelink = "",
-        githublink = "",
-        videolink,
-        techstacks = [],
-        color = "",
-        imgUrl = "",
-        priority,
-      }) => ({
-        name,
-        description,
-        livelink,
-        githublink,
-        videolink,
-        techstacks,
-        color,
-        priority,
-        imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
-      }))(item)
-    )
-    .sort((a, b) => {
-      return (b.priority ? b.priority : 0) - (a.priority ? a.priority : 0); // sorting priority wise
-      //   return data.map((item) => ({ name: item.name, level: item.level }));
-    });
+  try {
+    const data = await client.fetch('*[_type == "projects"]');
+    return data
+      .map((item) =>
+        (({
+          name = "",
+          description = "",
+          livelink = "",
+          githublink = "",
+          videolink,
+          techstacks = [],
+          color = "",
+          imgUrl = "",
+          priority,
+        }) => ({
+          name,
+          description,
+          livelink,
+          githublink,
+          videolink,
+          techstacks,
+          color,
+          priority,
+          imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
+        }))(item)
+      )
+      .sort((a, b) => {
+        return (b.priority ? b.priority : 0) - (a.priority ? a.priority : 0); // sorting priority wise
+        //   return data.map((item) => ({ name: item.name, level: item.level }));
+      });
+  } catch (err) {
+    return {};
+  }
 }
 
 async function getDatas() {
