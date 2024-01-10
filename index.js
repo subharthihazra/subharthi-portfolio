@@ -36,7 +36,7 @@ app.post("/sendmessage", storeMessage, async (req, res) => {
 });
 
 app.get("/cron", (req, res) => {
-  res.send(200).json({ cron: "hit" });
+  res.status(200).json({ cron: "hit" });
 });
 
 const PORT = process.env.PORT || 5000;
