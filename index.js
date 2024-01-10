@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   const portfolioData2 = await getDatas();
-  // console.log(portfolioData2.projects);
+  console.log(portfolioData2.skills);
   res.render("index", { portfolioData: portfolioData2 });
 });
 

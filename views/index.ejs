@@ -119,25 +119,35 @@
               style="--card-count: <%= portfolioData.skills.length %>"
             >
               <% for (let i = 0; i < portfolioData.skills.length; i++) { //fg
-              const skill = portfolioData.skills[i]; %>
-              <div
-                class="item"
-                style="
-                  --skill-level-bar-width: <%= skill.level %>%;
-                  --card-color: <%= skill.color %>;
-                  --card-iterator: <%= i %>;
-                "
-              >
-                <div
-                  class="image"
-                  style="background-image: url('<%= skill.imgUrl %>')"
-                ></div>
-                <div class="name"><%= skill.name %></div>
-                <% if(skill.level){ %>
-                <div class="level">
-                  <div class="bar"></div>
+              const skill_group = portfolioData.skills[i]; %>
+              <div class="group">
+                <div class="group_name"><%= skill_group.group_name %></div>
+                <div class="group_items">
+                  <% for (let j = 0; j < skill_group.group_elms.length; j++) {
+                  const skill = skill_group.group_elms[j]; %>
+                  <div
+                    class="item"
+                    style="
+                      --skill-level-bar-width: <%= skill.level %>%;
+                      --card-color: <%= skill.color %>;
+                      --card-iterator: <%= i %>;
+                    "
+                  >
+                    <div class="top">
+                      <div
+                        class="image"
+                        style="background-image: url('<%= skill.imgUrl %>')"
+                      ></div>
+                      <div class="name"><%= skill.name %></div>
+                    </div>
+                    <% if(skill.level){ %>
+                    <div class="level">
+                      <div class="bar"></div>
+                    </div>
+                    <% } %>
+                  </div>
+                  <% } %>
                 </div>
-                <% } %>
               </div>
               <% } %>
             </div>
