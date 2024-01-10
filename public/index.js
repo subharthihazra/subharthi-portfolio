@@ -26,6 +26,8 @@ const menu = document.querySelector("#menu");
 const menuWrapper = document.querySelector("#menu #wrapper");
 let menuLinks = undefined;
 
+const dmForm = document.querySelector(".section#contact form");
+
 ////////////////////////////////////////////////////////////////////////
 window.onscroll = function (e) {
   handleHeader(e);
@@ -34,6 +36,8 @@ window.onscroll = function (e) {
 window.onload = function (e) {
   handleHeader(e);
   handleMenuDOM();
+
+  dmForm.addEventListener("submit", sendMsg);
 };
 document.addEventListener("mousemove", function (e) {
   handleCardGradAnim(e);
@@ -60,6 +64,26 @@ headerMenuButton.onclick = function () {
 //     wobbleHeader();
 //   }
 // };
+//////////////////////////////////////////////
+
+function sendMsg(e) {
+  e.preventDefault();
+  console.log(e.target.name.value, e.target.message.value);
+  axios
+    .post("/sendmessage", {
+      name: e.target.name.value,
+      message: e.target.message.value,
+    })
+    .then((response) => {
+      // Handle the server's response if needed
+      console.log(response.data);
+      dmForm.reset();
+    })
+    .catch((error) => {
+      // Handle errors if any
+      console.error("Error sending message:", error);
+    });
+}
 
 //////////////////////////////////////////////////
 
@@ -225,3 +249,5 @@ function showMenu() {
 //     header.classList.remove("wobble");
 //   }, 2 * 1000);
 // }
+
+/////////////////////////////////////////////////////////
