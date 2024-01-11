@@ -874,12 +874,12 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  column-gap: 10px;
+  column-gap: 7px;
 }
 #main .section#projects .item .techstacks .ts {
   /* padding: 3px 0px; */
   position: relative;
-  padding-right: 14px;
+  padding-right: 11px;
 }
 
 #main .section#projects .item .techstacks .ts::after {
@@ -1162,6 +1162,14 @@ body {
       var(--card-color) 0%,
       transparent
     );
+  }
+
+  #main .cards_section.hidden .item {
+    /* opacity: 1; */
+    /* filter: unset; */
+    /* --webkit-filter: unset; */
+    /* --moz-filter: unset; */
+    transform: translate(0%);
   }
 }
 
