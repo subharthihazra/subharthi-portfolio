@@ -209,7 +209,7 @@ const sectionElmObserver = new IntersectionObserver((elms) => {
     if (elm.isIntersecting) {
       elm.target.classList.remove("hidden");
     } else {
-      elm.target.classList.add("hidden");
+      // elm.target.classList.add("hidden");
     }
   }
 }, sectionItemOptions);
