@@ -682,22 +682,22 @@ body {
 #main .section#skills .item {
 }
 #main .section#skills .group_items {
-  grid-template-columns: repeat(auto-fit, 200px);
+  grid-template-columns: repeat(auto-fit, 150px);
 }
 #main .section#skills .group_items .top {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
 #main .section#skills .group_items .top .name {
   flex-grow: 1;
-  margin-left: 0px;
+  /* margin-left: 0px; */
 }
 
 #main .section#skills .group_items .top .image {
-  margin-right: 0px;
+  /* margin-right: 0px; */
 }
 #main .section#skills .item .image {
   aspect-ratio: 1 / 1;
@@ -706,7 +706,8 @@ body {
 }
 #main .section#skills .item .level {
   position: relative;
-  margin: 0px 10px 10px 10px;
+  margin: 10px auto;
+  width: 80%;
   height: 5px;
   border-radius: 10px;
 }
