@@ -640,9 +640,9 @@ body {
   opacity: 0;
   transform: translateX(-10%);
 
-  filter: grayscale(1) blur(4px);
-  --webkit-filter: grayscale(1) blur(4px);
-  --moz-filter: grayscale(1) blur(4px);
+  filter: blur(4px);
+  --webkit-filter: blur(4px);
+  --moz-filter: blur(4px);
 
   transition: none;
 }
@@ -651,9 +651,9 @@ body {
   opacity: 1;
   transform: translateX(0%);
 
-  filter: grayscale(0) blur(0px);
-  --webkit-filter: grayscale(0) blur(0px);
-  --moz-filter: grayscale(0) blur(0px);
+  filter: blur(0px);
+  --webkit-filter: blur(0px);
+  --moz-filter: blur(0px);
 
   transition: all 0.3s;
   transition-delay: calc(
@@ -1166,9 +1166,9 @@ body {
 
   #main .cards_section.hidden .item {
     /* opacity: 1; */
-    filter: grayscale(1);
-    --webkit-filter: grayscale(1);
-    --moz-filter: grayscale(1);
+    filter: unset;
+    --webkit-filter: unset;
+    --moz-filter: unset;
     transform: translate(0%);
   }
 }
