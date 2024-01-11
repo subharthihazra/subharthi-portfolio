@@ -22,12 +22,20 @@ async function getSkills() {
         group_prio: bundle.group_prio,
         group_elms: bundle.group_elms
           .map((item) =>
-            (({ name = "", level, color = "", imgUrl = "", priority }) => ({
+            (({
+              name = "",
+              level,
+              color = "",
+              imgUrl = "",
+              priority,
+              meta = [],
+            }) => ({
               name,
               level,
               color,
               priority,
               imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
+              meta,
             }))(item)
           )
           .sort((a, b) => {
@@ -57,21 +65,27 @@ async function getProjects() {
           description = "",
           livelink = "",
           githublink = "",
-          videolink,
+          videolink = "",
+          bloglink = "",
+          tag = "",
           techstacks = [],
           color = "",
           imgUrl = "",
           priority,
+          meta = [],
         }) => ({
           name,
           description,
           livelink,
           githublink,
           videolink,
+          bloglink,
+          tag,
           techstacks,
           color,
           priority,
           imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
+          meta,
         }))(item)
       )
       .sort((a, b) => {

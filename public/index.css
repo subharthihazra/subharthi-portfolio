@@ -742,7 +742,10 @@ body {
   grid-template-columns: repeat(auto-fit, 200px);
 }
 #main .section#projects .item {
-  cursor: pointer;
+  /* cursor: pointer; */
+}
+#main .section#projects .item * {
+  font-family: "Poppins", sans-serif;
 }
 
 #main .section#projects .item .image {
@@ -751,7 +754,11 @@ body {
   position: relative;
 }
 
-#main .section#projects .item .image::before {
+#main .section#projects .item.withlink .image {
+  cursor: pointer;
+}
+
+#main .section#projects .item.withlink .image::before {
   content: "";
   position: absolute;
   top: 0%;
@@ -761,18 +768,18 @@ body {
   border-radius: inherit;
   box-sizing: border-box;
 
-  background-color: #00000077;
+  background-color: #00000080;
   background-position: center center;
-  background-size: 40px;
+  background-size: 30px;
   background-repeat: no-repeat;
-  background-image: url("./images/expand_logo.svg");
+  background-image: url("./images/link_logo2_white.svg");
 
   z-index: 1;
   opacity: 0;
   transition: all 0.3s;
 }
-#main .section#projects .item:hover .image::before {
-  opacity: 1;
+#main .section#projects .item.withlink:hover .image::before {
+  opacity: 0.7;
 }
 
 #main .section#projects .shelf {
@@ -797,7 +804,7 @@ body {
   width: 40px;
 
   background-position: center center;
-  background-size: 45%;
+  background-size: 50%;
   background-repeat: no-repeat;
 
   transition: all 0.3s;
@@ -831,6 +838,69 @@ body {
     0px 0px 15px 1px rgba(0, 0, 0, 0.2);
   border-color: #ffffff77;
 }
+/*-------------------------------------*/
+#main .section#projects .item .name {
+  text-align: left;
+}
+#main .section#projects .item .desc {
+  font-size: 14px;
+  text-align: left;
+  margin: 10px;
+  color: #ffffffb0;
+  /* font-family: "Overpass Mono", monospace; */
+}
+#main .section#projects .item .alltags {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  font-size: 13px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#main .section#projects .item .alltags * {
+  font-family: "Overpass Mono", monospace;
+}
+#main .section#projects .item .tag {
+  background-color: #ffffffcc;
+  border-radius: 50px;
+  padding: 3px 8px;
+  width: fit-content;
+  color: black;
+  /* text-transform: uppercase; */
+}
+#main .section#projects .item .techstacks {
+  width: fit-content;
+  color: #ffffffc0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 10px;
+}
+#main .section#projects .item .techstacks .ts {
+  /* padding: 3px 0px; */
+  position: relative;
+  padding-right: 14px;
+}
+
+#main .section#projects .item .techstacks .ts::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: #ffffffb0;
+  border-radius: 10px;
+}
+
+#main .section#projects .item .techstacks .ts:last-child {
+  padding-right: 0px;
+}
+#main .section#projects .item .techstacks .ts:last-child:after {
+  display: none;
+}
+
 /*----------------*/
 
 #main .section#projects #project_githublink {
@@ -838,6 +908,10 @@ body {
 }
 #main .section#projects #project_videolink {
   background-image: url("./images/video_logo_white.png");
+}
+
+#main .section#projects #project_bloglink {
+  background-image: url("./images/blog_logo_white.svg");
 }
 #main .section#projects #project_livelink {
   background-image: url("./images/link_logo_white.png");
