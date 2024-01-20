@@ -84,7 +84,7 @@ async function getProjects() {
           techstacks,
           color,
           priority,
-          imgUrl: imgUrl ? urlFor(imgUrl).width(200).url() : "",
+          imgUrl: imgUrl ? urlFor(imgUrl).width(500).url() : "",
           meta,
         }))(item)
       )
