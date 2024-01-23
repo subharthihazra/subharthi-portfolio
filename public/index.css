@@ -1052,6 +1052,10 @@ body {
 #main .section#contact form .submit:hover {
   background-color: #a6c2d8;
 }
+#main .section#contact form .submit:disabled {
+  background-color: #999999;
+  cursor: default;
+}
 #main .section#contact #desc {
   text-align: justify;
 }

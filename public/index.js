@@ -27,6 +27,7 @@ const menuWrapper = document.querySelector("#menu #wrapper");
 let menuLinks = undefined;
 
 const dmForm = document.querySelector(".section#contact form");
+const dmFormSubmit = document.querySelector(".section#contact form .submit");
 
 ////////////////////////////////////////////////////////////////////////
 window.onscroll = function (e) {
@@ -69,6 +70,7 @@ headerMenuButton.onclick = function () {
 function sendMsg(e) {
   e.preventDefault();
   console.log(e.target.name.value, e.target.message.value);
+  dmFormSubmit.disabled = true;
   axios
     .post("/sendmessage", {
       name: e.target.name.value,
@@ -82,6 +84,9 @@ function sendMsg(e) {
     .catch((error) => {
       // Handle errors if any
       console.error("Error sending message:", error);
+    })
+    .finally(() => {
+      dmFormSubmit.disabled = false;
     });
 }
 
