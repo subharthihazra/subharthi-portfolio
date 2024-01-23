@@ -6,7 +6,7 @@ const app = express();
 const portfolioData = require("./data");
 const { getDatas } = require("./utils/sanity");
 const { connectDB, storeMessage } = require("./utils/db");
-const { sendEmail } = require("./utils/nodemailer");
+const { default: axios } = require("axios");
 
 // static assets
 app.use(express.static(path.join(__dirname, "public")));
@@ -28,8 +28,15 @@ app.post("/sendmessage", storeMessage, async (req, res) => {
   try {
     const { name, message } = req.body;
 
-    await sendEmail(name, message);
-    res.status(201).json({ message: "success" });
+    const { data } = await axios.post(String(process.env.EMAIL_SERVER_URL), {
+      name,
+      message,
+    });
+    if (data?.message === "success") {
+      res.status(201).json({ message: "success" });
+    } else {
+      res.status(500).json({ message: "error" });
+    }
   } catch (error) {
     res.status(500).json({ message: "error" });
   }

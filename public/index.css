@@ -421,7 +421,7 @@ body {
 /*----First cover when opened ---*/
 
 #main .section#first_banner {
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -564,7 +564,7 @@ body {
 /*----------- section cards ------------*/
 
 #main .section {
-  min-height: 100vh;
+  min-height: 100svh;
 }
 #main .cards_section .shelf {
   justify-content: center;
@@ -1078,7 +1078,7 @@ body {
   }
 
   #main .section#first_banner .layer#pic_layer {
-    height: 100vh;
+    height: 100svh;
     width: 50%;
     right: 0%;
   }
@@ -1110,12 +1110,12 @@ body {
     /* flex-direction: column; */
   }
   #main .section#first_banner .layer#text_layer {
-    height: 100vh;
+    height: 100svh;
     width: 100%;
   }
 
   #main .section#first_banner .layer#pic_layer {
-    height: 50vh;
+    height: 50svh;
     width: 100%;
     bottom: 0%;
   }
@@ -1178,7 +1178,7 @@ body {
 
 @media screen and (min-width: 1000px) {
   #main .section#first_banner .layer#text_layer {
-    height: 100vh;
+    height: 100svh;
     width: 50%;
     left: 0%;
   }
@@ -1193,7 +1193,7 @@ body {
 
 @media screen and (min-width: 750px) and (max-width: 1000px) {
   #main .section#first_banner .layer#text_layer {
-    height: 100vh;
+    height: 100svh;
     width: 70%;
     left: 15%;
   }
